@@ -20,10 +20,10 @@
     game.fps = 20;
     game.onload = function(){
  // Obstacle Detection on Maps
-var map = new Map(16, 16);
+var map = new Map(32, 32);
 map.image = game.assets['/assets/images/map0.png'];
 var mapa = [
-  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ,0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
   [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
@@ -73,9 +73,9 @@ game.rootScene.addChild(map);
         bear.frame = [6, 6, 7, 7];   // select sprite frame
         
         bear.tl.moveBy(200, 0, 90)   // move right
-            .scaleTo(-1, 1, 10)      // turn left
+            .scaleTo(-1, 1, 1)      // turn left
             .moveBy(-200, 0, 90)     // move left
-            .scaleTo(1, 1, 10)       // turn right
+            .scaleTo(1, 1, 1)       // turn right
             .loop();                 // loop it
     };
 
