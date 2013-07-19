@@ -1,0 +1,26 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/enchant.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        @content
+        <script type="text/javascript">
+        enchant();
+ 
+var game = new Game(320, 320);
+game.preload('preload1.gif', 'preload2.wav');
+game.onload = function () {
+  // Game code is written here
+};
+game.start();
+        </script>
+    </body>
+</html>
