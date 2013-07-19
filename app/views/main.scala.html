@@ -13,14 +13,25 @@
     <body>
         @content
         <script type="text/javascript">
-        enchant();
- 
-var game = new Game(320, 320);
-game.preload('preload1.gif', 'preload2.wav');
-game.onload = function () {
-  // Game code is written here
-};
-game.start();
+    enchant(); // initialize
+    var game = new Core(640, 640); // game stage
+    game.preload('/assets/images/chara1.png'); // preload image
+    game.fps = 20;
+
+    game.onload = function(){
+        var bear = new Sprite(32, 32);
+        bear.image = game.assets['/assets/images/chara1.png'];
+        game.rootScene.addChild(bear);
+        bear.frame = [6, 6, 7, 7];   // select sprite frame
+        
+        bear.tl.moveBy(600, 0, 90)   // move right
+            .scaleTo(-1, 1, 10)      // turn left
+            .moveBy(-600, 0, 90)     // move left
+            .scaleTo(1, 1, 10)       // turn right
+            .loop();                 // loop it
+    };
+
+    game.start(); // start your game!
         </script>
     </body>
 </html>
