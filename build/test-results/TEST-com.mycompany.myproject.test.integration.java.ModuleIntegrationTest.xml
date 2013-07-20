@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="com.mycompany.myproject.test.integration.java.ModuleIntegrationTest" tests="2" failures="0" errors="0" timestamp="2013-07-20T11:42:23" hostname="Christophs-MacBook-Pro.local" time="0.023">
+  <properties/>
+  <testcase name="testSomethingElse" classname="com.mycompany.myproject.test.integration.java.ModuleIntegrationTest" time="0.01"/>
+  <testcase name="testPing" classname="com.mycompany.myproject.test.integration.java.ModuleIntegrationTest" time="0.013"/>
+  <system-out><![CDATA[Starting test: testSomethingElse
+Starting test: testPing
+]]></system-out>
+  <system-err><![CDATA[Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: in testPing()
+Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Sent back pong
+]]></system-err>
+</testsuite>

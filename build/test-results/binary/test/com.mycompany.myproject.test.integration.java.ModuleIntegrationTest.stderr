@@ -1,0 +1,8 @@
+Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: in testPing()
+Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Sent back pong

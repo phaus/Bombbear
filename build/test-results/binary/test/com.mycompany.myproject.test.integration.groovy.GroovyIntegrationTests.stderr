@@ -1,0 +1,15 @@
+log4j:WARN No appenders could be found for logger (io.netty.util.internal.logging.InternalLoggerFactory).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Jul 20, 2013 1:42:10 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Downloading io.vertx~lang-groovy~2.0.0-final. Please wait...
+Jul 20, 2013 1:42:20 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Module io.vertx~lang-groovy~2.0.0-final successfully installed
+Jul 20, 2013 1:42:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:42:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: in testPing()
+Jul 20, 2013 1:42:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Sent back pong
+Jul 20, 2013 1:42:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started

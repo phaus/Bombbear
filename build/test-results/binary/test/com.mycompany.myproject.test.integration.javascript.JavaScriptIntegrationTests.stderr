@@ -1,0 +1,10 @@
+Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Downloading io.vertx~lang-rhino~2.0.0-final. Please wait...
+Jul 20, 2013 1:42:26 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Module io.vertx~lang-rhino~2.0.0-final successfully installed
+Jul 20, 2013 1:42:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:42:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Sent back pong
+Jul 20, 2013 1:42:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started

@@ -1,0 +1,5 @@
+Starting test: src/test/resources/integration_tests/python|basic_integration_test.py|test_http
+Starting test: src/test/resources/integration_tests/python|basic_integration_test.py|test_deploy_arbitrary_verticle
+Starting test: src/test/resources/integration_tests/python|basic_integration_test.py|test_complete_on_timer
+Starting test: src/test/resources/integration_tests/python|module_integration_test.py|test_ping
+Starting test: src/test/resources/integration_tests/python|module_integration_test.py|test_something_else

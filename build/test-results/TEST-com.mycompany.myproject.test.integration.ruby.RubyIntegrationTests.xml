@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="com.mycompany.myproject.test.integration.ruby.RubyIntegrationTests" tests="5" failures="0" errors="0" timestamp="2013-07-20T11:42:51" hostname="Christophs-MacBook-Pro.local" time="37.143">
+  <properties/>
+  <testcase name="src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_http" classname="com.mycompany.myproject.test.integration.ruby.RubyIntegrationTests" time="33.611"/>
+  <testcase name="src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_deploy_arbitrary_verticle" classname="com.mycompany.myproject.test.integration.ruby.RubyIntegrationTests" time="0.68"/>
+  <testcase name="src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_complete_on_timer" classname="com.mycompany.myproject.test.integration.ruby.RubyIntegrationTests" time="1.738"/>
+  <testcase name="src/test/resources/integration_tests/ruby|module_integration_test.rb|test_ping" classname="com.mycompany.myproject.test.integration.ruby.RubyIntegrationTests" time="0.498"/>
+  <testcase name="src/test/resources/integration_tests/ruby|module_integration_test.rb|test_something_else" classname="com.mycompany.myproject.test.integration.ruby.RubyIntegrationTests" time="0.614"/>
+  <system-out><![CDATA[Starting test: src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_http
+Starting test: src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_deploy_arbitrary_verticle
+Starting test: src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_complete_on_timer
+Starting test: src/test/resources/integration_tests/ruby|module_integration_test.rb|test_ping
+Starting test: src/test/resources/integration_tests/ruby|module_integration_test.rb|test_something_else
+]]></system-out>
+  <system-err><![CDATA[Jul 20, 2013 1:42:52 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Downloading io.vertx~lang-jruby~2.0.0-final. Please wait...
+Jul 20, 2013 1:43:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Module io.vertx~lang-jruby~2.0.0-final successfully installed
+Jul 20, 2013 1:43:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:43:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Sent back pong
+Jul 20, 2013 1:43:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+]]></system-err>
+</testsuite>

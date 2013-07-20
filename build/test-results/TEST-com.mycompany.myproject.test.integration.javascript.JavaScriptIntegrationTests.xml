@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="com.mycompany.myproject.test.integration.javascript.JavaScriptIntegrationTests" tests="5" failures="0" errors="0" timestamp="2013-07-20T11:42:23" hostname="Christophs-MacBook-Pro.local" time="5.288">
+  <properties/>
+  <testcase name="src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testHTTP" classname="com.mycompany.myproject.test.integration.javascript.JavaScriptIntegrationTests" time="3.391"/>
+  <testcase name="src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testDeployArbitraryVerticle" classname="com.mycompany.myproject.test.integration.javascript.JavaScriptIntegrationTests" time="0.262"/>
+  <testcase name="src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testCompleteOnTimer" classname="com.mycompany.myproject.test.integration.javascript.JavaScriptIntegrationTests" time="1.237"/>
+  <testcase name="src/test/resources/integration_tests/javascript|moduleIntegrationTest.js|testPing" classname="com.mycompany.myproject.test.integration.javascript.JavaScriptIntegrationTests" time="0.212"/>
+  <testcase name="src/test/resources/integration_tests/javascript|moduleIntegrationTest.js|testSomethingElse" classname="com.mycompany.myproject.test.integration.javascript.JavaScriptIntegrationTests" time="0.186"/>
+  <system-out><![CDATA[Starting test: src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testHTTP
+Starting test: src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testDeployArbitraryVerticle
+Starting test: src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testCompleteOnTimer
+Starting test: src/test/resources/integration_tests/javascript|moduleIntegrationTest.js|testPing
+Starting test: src/test/resources/integration_tests/javascript|moduleIntegrationTest.js|testSomethingElse
+]]></system-out>
+  <system-err><![CDATA[Jul 20, 2013 1:42:23 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Downloading io.vertx~lang-rhino~2.0.0-final. Please wait...
+Jul 20, 2013 1:42:26 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Module io.vertx~lang-rhino~2.0.0-final successfully installed
+Jul 20, 2013 1:42:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:42:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Sent back pong
+Jul 20, 2013 1:42:28 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+]]></system-err>
+</testsuite>

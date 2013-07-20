@@ -1,0 +1,5 @@
+Starting test: src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_http
+Starting test: src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_deploy_arbitrary_verticle
+Starting test: src/test/resources/integration_tests/ruby|basic_integration_test.rb|test_complete_on_timer
+Starting test: src/test/resources/integration_tests/ruby|module_integration_test.rb|test_ping
+Starting test: src/test/resources/integration_tests/ruby|module_integration_test.rb|test_something_else

@@ -1,0 +1,12 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="com.mycompany.myproject.test.integration.java.BasicIntegrationTest" tests="3" failures="0" errors="0" timestamp="2013-07-20T11:42:22" hostname="Christophs-MacBook-Pro.local" time="1.033">
+  <properties/>
+  <testcase name="testDeployArbitraryVerticle" classname="com.mycompany.myproject.test.integration.java.BasicIntegrationTest" time="0.003"/>
+  <testcase name="testHTTP" classname="com.mycompany.myproject.test.integration.java.BasicIntegrationTest" time="0.024"/>
+  <testcase name="testCompleteOnTimer" classname="com.mycompany.myproject.test.integration.java.BasicIntegrationTest" time="1.004"/>
+  <system-out><![CDATA[Starting test: testDeployArbitraryVerticle
+Starting test: testHTTP
+Starting test: testCompleteOnTimer
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

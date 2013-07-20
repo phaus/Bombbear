@@ -1,0 +1,6 @@
+Starting test: src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testHTTP
+Starting test: src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testDeployArbitraryVerticle
+Starting test: src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testCompleteOnTimer
+Starting test: src/test/resources/integration_tests/groovy|ModuleIntegrationTest.groovy|testPing
+vertx is org.vertx.groovy.core.Vertx
+Starting test: src/test/resources/integration_tests/groovy|ModuleIntegrationTest.groovy|testSomethingElse

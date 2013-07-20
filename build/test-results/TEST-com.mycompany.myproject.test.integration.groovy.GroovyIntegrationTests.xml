@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="com.mycompany.myproject.test.integration.groovy.GroovyIntegrationTests" tests="5" failures="0" errors="0" timestamp="2013-07-20T11:42:10" hostname="Christophs-MacBook-Pro.local" time="12.106">
+  <properties/>
+  <testcase name="src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testHTTP" classname="com.mycompany.myproject.test.integration.groovy.GroovyIntegrationTests" time="10.844"/>
+  <testcase name="src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testDeployArbitraryVerticle" classname="com.mycompany.myproject.test.integration.groovy.GroovyIntegrationTests" time="0.067"/>
+  <testcase name="src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testCompleteOnTimer" classname="com.mycompany.myproject.test.integration.groovy.GroovyIntegrationTests" time="1.064"/>
+  <testcase name="src/test/resources/integration_tests/groovy|ModuleIntegrationTest.groovy|testPing" classname="com.mycompany.myproject.test.integration.groovy.GroovyIntegrationTests" time="0.078"/>
+  <testcase name="src/test/resources/integration_tests/groovy|ModuleIntegrationTest.groovy|testSomethingElse" classname="com.mycompany.myproject.test.integration.groovy.GroovyIntegrationTests" time="0.05"/>
+  <system-out><![CDATA[Starting test: src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testHTTP
+Starting test: src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testDeployArbitraryVerticle
+Starting test: src/test/resources/integration_tests/groovy|BasicIntegrationTest.groovy|testCompleteOnTimer
+Starting test: src/test/resources/integration_tests/groovy|ModuleIntegrationTest.groovy|testPing
+vertx is org.vertx.groovy.core.Vertx
+Starting test: src/test/resources/integration_tests/groovy|ModuleIntegrationTest.groovy|testSomethingElse
+]]></system-out>
+  <system-err><![CDATA[log4j:WARN No appenders could be found for logger (io.netty.util.internal.logging.InternalLoggerFactory).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Jul 20, 2013 1:42:10 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Downloading io.vertx~lang-groovy~2.0.0-final. Please wait...
+Jul 20, 2013 1:42:20 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Module io.vertx~lang-groovy~2.0.0-final successfully installed
+Jul 20, 2013 1:42:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+Jul 20, 2013 1:42:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: in testPing()
+Jul 20, 2013 1:42:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: Sent back pong
+Jul 20, 2013 1:42:22 PM org.vertx.java.core.logging.impl.JULLogDelegate info
+INFO: PingVerticle started
+]]></system-err>
+</testsuite>

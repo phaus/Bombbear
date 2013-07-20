@@ -1,0 +1,5 @@
+Starting test: src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testHTTP
+Starting test: src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testDeployArbitraryVerticle
+Starting test: src/test/resources/integration_tests/javascript|basicIntegrationTest.js|testCompleteOnTimer
+Starting test: src/test/resources/integration_tests/javascript|moduleIntegrationTest.js|testPing
+Starting test: src/test/resources/integration_tests/javascript|moduleIntegrationTest.js|testSomethingElse
