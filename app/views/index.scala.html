@@ -6,13 +6,13 @@
 	    enchant(); // initialize
 	    var game = new Core(1280, 720); // game stage
 	    game.preload('/assets/images/@(player).png'); // preload image
-	    game.preload('/assets/images/map0.png'); // preload image
+	    game.preload('/assets/images/map1.png'); // preload image
 	    game.fps = 20;
 	    game.onload = function(){
 		
 		// Obstacle Detection on Maps
-		var map = new Map(32, 32);
-		map.image = game.assets['/assets/images/map0.png'];
+		var map = new Map(16, 16);
+		map.image = game.assets['/assets/images/map1.png'];
 		map.loadData(data.fieldMap);
 		map.collisionData = data.colMap;
 		 

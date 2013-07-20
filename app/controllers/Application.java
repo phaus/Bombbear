@@ -23,7 +23,7 @@ public class Application extends Controller {
 	protected static Game game = new Game();
 
 	public static Result index() {
-		String player = game.getNextPlayerFor(""+System.currentTimeMillis());
+		String player = game.getNextPlayerFor(""+System.currentTimeMillis(), request().remoteAddress());
 		if (player == null) {
 			return notFound();
 		}
@@ -37,6 +37,12 @@ public class Application extends Controller {
 		return ok(result);
 	}
 
+	public static Result player	() {
+		ObjectNode result = Json.newObject();
+		result.put("player", Json.toJson(game.getPlayers()));
+		return ok(result);	
+	}
+	
 	public static WebSocket<JsonNode> chat(final String username) {
 		return new WebSocket<JsonNode>() {
 
@@ -58,7 +64,10 @@ public class Application extends Controller {
 		BufferedInputStream bis = new BufferedInputStream(
 				Application.class.getResourceAsStream("/public/maps.json"));
 		JsonNode json = Json.parse(getContentOfStream(bis));
-		return Json.fromJson(json, models.MapModel.class);
+		MapModel mm = Json.fromJson(json, models.MapModel.class);
+		mm.fillUpField();
+		mm.fillUpCols();
+		return mm;
 	}
 
 	private static String getContentOfStream(InputStream is) {
