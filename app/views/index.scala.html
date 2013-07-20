@@ -1,13 +1,30 @@
 @(message: String, player: String)
 
 @main("Welcome to Bombbear!") {
+
+	<div id="player-list"></div>
+	
 	<script type="text/javascript">
- 	$.getJSON("@routes.Application.map()", function( data ) {
-	    enchant(); // initialize
+		enchant(); // initialize
 	    var game = new Core(1280, 720); // game stage
 	    game.preload('/assets/images/@(player).png'); // preload image
 	    game.preload('/assets/images/map1.png'); // preload image
 	    game.fps = 20;
+	$.getJSON("@routes.Application.player()", function( data ) {
+		var content = "";
+		var list = $("#player-list");
+		list.attr('style', 'position:absolute; right: 10px;');
+		content = "<table><td>Spielername:</td><td>Charakter</td>";
+		$.each(data, function(key, value) {
+			content = content + "<tr><td>" + value.username + "</td><td>" + value.character + "</td></tr>";
+		});
+		content = content + "</table>";
+		list.html(content);
+	});
+	
+	
+	
+ 	$.getJSON("@routes.Application.map()", function( data ) {
 	    game.onload = function(){
 		
 		// Obstacle Detection on Maps
