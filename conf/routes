@@ -5,6 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET		/map						controllers.Application.map()
+GET		/join						controllers.Application.join()
 GET		/player						controllers.Application.player()
 GET		/players					controllers.Application.players()
 

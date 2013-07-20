@@ -1,0 +1,10 @@
+#info {
+	z-index:999; 
+	position:absolute; 
+	bottom: 10px;
+	height:40px; 
+	width: 99%;
+	background-color:black;
+	color:white;
+	overflow:auto;
+}

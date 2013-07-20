@@ -1,7 +1,43 @@
 @(message: String, player: String)
 
 @main("Welcome to Bombbear!") {
+	<div id="info"></div>
 	<script type="text/javascript">
+    var WS = window['MozWebSocket'] ? MozWebSocket : WebSocket
+ 	var chatSocket = new WS("@routes.Application.join().webSocketURL(request)")
+    $(function() {
+	    var receiveEvent = function(event) {
+	        var data = JSON.parse(event.data)
+	
+	        // Handle errors
+	        if(data.error) {
+	            chatSocket.close()
+	            $("#onError span").text(data.error)
+	            $("#onError").show()
+	            return
+	        } else {
+	            $("#onChat").show()
+	        }
+	
+	        // Create the message element
+	        var el = $('<div class="message"><span></span><p></p></div>')
+	        $("span", el).text(data.user)
+	        $("p", el).text(data.message)
+	        $(el).addClass(data.kind)
+	        if(data.user == '@player') $(el).addClass('me')
+	        $('#info').append(el)
+	
+	        // Update the members list
+	        $("#info").html('')
+	        $(data.members).each(function() {
+	            var li = document.createElement('li');
+	            li.textContent = this;
+	            $("#info").append(li);
+	        })
+	    }
+	    chatSocket.onmessage = receiveEvent
+	
+
  	$.getJSON("@routes.Application.map()", function( data ) {
 	    enchant(); // initialize
 	    var game = new Core(1280, 720); // game stage
@@ -15,11 +51,7 @@
 		map.image = game.assets['/assets/images/map1.png'];
 		map.loadData(data.fieldMap);
 		map.collisionData = data.colMap;
-		 
-		if (map.hitTest(100,100) === true) {
-		  console.log('hit');
-		}
-		 
+ 
 		game.rootScene.addChild(map);
 		var bear = new Sprite(32, 32);
 		bear.image = game.assets['/assets/images/@(player).png'];
@@ -40,6 +72,11 @@
 		};
 	
 		game.start(); // start your game!
+		
+	        chatSocket.send(JSON.stringify(
+	            {text:"@player joined!"}
+	        ))		
     });
-        </script>
+    	});	
+	</script>
 }
