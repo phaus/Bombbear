@@ -9,3 +9,5 @@ function config() {
 	
 	
 }
+
+var config = new config();
