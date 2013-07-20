@@ -23,7 +23,8 @@ public class Application extends Controller {
 	protected static Game game = new Game();
 
 	public static Result index() {
-		String player = game.getNextPlayerFor(""+System.currentTimeMillis(), request().remoteAddress());
+		String player = game.getNextPlayerFor("" + System.currentTimeMillis(),
+				request().remoteAddress());
 		if (player == null) {
 			return notFound();
 		}
@@ -37,12 +38,20 @@ public class Application extends Controller {
 		return ok(result);
 	}
 
-	public static Result player	() {
+	public static Result player() {
 		ObjectNode result = Json.newObject();
-		result.put("player", Json.toJson(game.getPlayers()));
-		return ok(result);	
+		result.put("player",
+				Json.toJson(game.getPlayer(request().remoteAddress())));
+		return ok(result);
+
 	}
-	
+
+	public static Result players() {
+		ObjectNode result = Json.newObject();
+		result.put("players", Json.toJson(game.getPlayers()));
+		return ok(result);
+	}
+
 	public static WebSocket<JsonNode> chat(final String username) {
 		return new WebSocket<JsonNode>() {
 

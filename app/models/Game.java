@@ -30,6 +30,10 @@ public class Game {
 		return null;
 	}
 
+	public Client getPlayer(String ip){
+		return players.get(ip);
+	}
+	
 	public Map<String, Client> getPlayers() {
 		return players;
 	}
