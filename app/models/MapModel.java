@@ -11,7 +11,7 @@ public class MapModel {
 	private final static Integer ZERO = Integer.valueOf(0);
 
 	public void fillUpField() {
-		List<List<Integer>> out = new ArrayList<>();
+		List<List<Integer>> out = new ArrayList<List<Integer>>();
 		for (int i = 0; i < fieldMap.size(); i++) {
 			out.add(getListWithZeroFile(fieldMap.get(i), _W));
 		}
@@ -22,7 +22,7 @@ public class MapModel {
 	}
 
 	public void fillUpCols() {
-		List<List<Integer>> out = new ArrayList<>();
+		List<List<Integer>> out = new ArrayList<List<Integer>>();
 		for (int i = 0; i < colMap.size(); i++) {
 			out.add(getListWithZeroFile(colMap.get(i), _W));
 		}
