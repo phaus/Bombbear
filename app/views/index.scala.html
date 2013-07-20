@@ -7,12 +7,14 @@
     game.preload('/assets/images/chara1.png'); // preload image
     game.preload('/assets/images/map0.png'); // preload image
     game.fps = 20;
+    var map = new Map(32, 32);
+    var size = 32;
     game.onload = function(){
  // Obstacle Detection on Maps
-var map = new Map(32, 32);
+
 map.image = game.assets['/assets/images/map0.png'];
 var mapa = [
-  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ,0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
   [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
@@ -56,18 +58,21 @@ if (map.hitTest(100,100) === true) {
 }
 var Player = enchant.Class.create(enchant.Sprite, {
     initialize: function(){
-        enchant.Sprite.call(this, 32, 32);
+        enchant.Sprite.call(this, size, size);
         this.image = game.assets['/assets/images/chara1.png'];
         this.frame = [6, 6, 7, 7];                   // set image data
         game.rootScene.addChild(this);     // add to canvas
     }
 });
+
+var move_direction = null;
  
 game.rootScene.addChild(map);
         
         bear.image = game.assets['/assets/images/chara1.png'];
         game.rootScene.addChild(bear);
         bear.frame = [6, 6, 7, 7];   // select sprite frame
+        
         /*
         bear.tl.moveBy(200, 0, 90)   // move right
             .scaleTo(-1, 1, 1)      // turn left
@@ -76,25 +81,108 @@ game.rootScene.addChild(map);
           */  //.loop();                 // loop it
     };
     game.rootScene.on('downbuttondown', function(evt){
-    	//bear.y = evt.localY;    // set position to touch-y position
-    	bear.tl.moveBy(0,32,8);
-        
+    	move_direction=('down');
+    	move();
+    });
+    game.rootScene.on('downbuttonup', function(evt){
+    	move_direction='stop';
+    	move();
+    	move_finish('down');
     });
     game.rootScene.on('upbuttondown', function(evt){
-    	//bear.y = evt.localY;    // set position to touch-y position
-    	bear.tl.moveBy(0,-32,8);
-        
+    	
+    	move_direction=('up'); 
+    	move();
     });
+    game.rootScene.on('upbuttonup', function(evt){
+    	move_direction='stop';
+    	move();
+    	move_finish('up');
+    });
+    
+    
     game.rootScene.on('leftbuttondown', function(evt){
-    	//bear.y = evt.localY;    // set position to touch-y position
-    	bear.tl.moveBy(-32,0,8);
-        
+    	move_direction=('left');
+    	move(size);
+    });
+    game.rootScene.on('leftbuttonup', function(evt){
+    	move_direction='stop';
+    	move(size);
+    	move_finish('left');
     });
     game.rootScene.on('rightbuttondown', function(evt){
-    	//bear.y = evt.localY;    // set position to touch-y position
-    	bear.tl.moveBy(32,0,8);
-        
+    	
+    	move_direction=('right');
+    	move(size);
+    	
     });
+    game.rootScene.on('rightbuttonup', function(evt){
+    	move_direction='stop';
+    	move(size);
+    	move_finish('right');
+    });
+    
+    function move(movement){
+    	
+    	bear.tl.resume();
+    	switch (move_direction){
+    		case 'up':{
+    			if (bear.y % size == 0)  movement = size ; else movement = size - bear.y % size;
+    			if (map.hitTest(bear.x,bear.y-size) !== true ) bear.tl.moveBy(0,- size,4) ;
+    			break;
+    		}
+    		case 'down':{
+    			if (bear.y % size == 0)  movement = size ; else movement = size - bear.y % size;
+    			if (map.hitTest(bear.x,bear.y+size) !== true ) bear.tl.moveBy(0,size,4) ;
+    			break;
+    		}
+    		case 'left':{
+    			if (bear.x % size == 0)  movement = size ; else movement = size - bear.x % size;
+    			if (map.hitTest(bear.x-size,bear.y) !== true ) bear.tl.scaleTo(-1, 1, 1).moveBy(-size,0,4) ;
+    			break;
+    		}
+    		case 'right':{
+    			if (bear.x % size == 0)  movement = size ; else movement = size - bear.x % size;
+    			if (map.hitTest(bear.x+size,bear.y) !== true ) bear.tl.scaleTo(1, 1, 1).moveBy(size,0,4) ;
+    			break;
+    		}
+    		case 'stop':{
+    			bear.tl.clear();
+    			break;
+    		}
+    	}
+    }
+    
+    function move_finish(direction){
+    	
+    	var movement = size;
+    	switch (direction){
+    		case 'up':{
+    			if (bear.y % size == 0)  movement = size ; else movement = size - bear.y % size;
+    			if (map.hitTest(bear.x,bear.y-size) !== true ) bear.tl.moveBy(0,- movement,0) ;
+    			break;
+    		}
+    		case 'down':{
+    			if (bear.y % size == 0)  movement = size ; else movement = size - bear.y % size;
+    			if (map.hitTest(bear.x,bear.y+size) !== true ) bear.tl.moveBy(0,movement,0) ;
+    			break;
+    		}
+    		case 'left':{
+    			if (bear.x % size == 0)  movement = size ; else movement = size - bear.x % size;
+    			if (map.hitTest(bear.x-size,bear.y) !== true ) bear.tl.scaleTo(-1, 1, 1).moveBy(-movement,0,0) ;
+    			break;
+    		}
+    		case 'right':{
+    			if (bear.x % size == 0)  movement = size ; else movement = size - bear.x % size;
+    			if (map.hitTest(bear.x+size,bear.y) !== true ) bear.tl.scaleTo(1, 1, 1).moveBy(movement,0,0) ;
+    			break;
+    		}
+    		
+    	}
+    }
+    
+    
+    
     game.start(); // start your game!
     var bear = new Sprite(32, 32);  
     
