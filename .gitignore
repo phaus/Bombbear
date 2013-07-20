@@ -17,3 +17,7 @@ dist
 /.target
 /*.iws
 /*.ipr
+
+.gradle
+bin
+/build
