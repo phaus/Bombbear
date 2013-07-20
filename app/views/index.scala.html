@@ -1,79 +1,45 @@
-@(message: String)
+@(message: String, player: String)
 
 @main("Welcome to Bombbear!") {
 	<script type="text/javascript">
-    enchant(); // initialize
-    var game = new Core(1280, 720); // game stage
-    game.preload('/assets/images/chara1.png'); // preload image
-    game.preload('/assets/images/map0.png'); // preload image
-    game.fps = 20;
-    game.onload = function(){
- // Obstacle Detection on Maps
-var map = new Map(32, 32);
-map.image = game.assets['/assets/images/map0.png'];
-var mapa = [
-  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]
-];
-map.loadData(mapa);
-
-var colMap = [
-  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]
-];
-map.collisionData = colMap;
- 
-if (map.hitTest(100,100) === true) {
-  console.log('hit');
-}
- 
-game.rootScene.addChild(map);
-        var bear = new Sprite(32, 32);
-        bear.image = game.assets['/assets/images/chara1.png'];
-        game.rootScene.addChild(bear);
-        bear.frame = [6, 6, 7, 7];   // select sprite frame
-        
-        bear.tl.moveBy(320, 0, 40)   // move right
-        	.scaleTo(-1, 1, 1)		// turn left
-        	.moveBy(0, 320, 40)		// move down
-            .moveBy(-320, 0, 40)     // move left
-            .scaleTo(1, 1, 1)		// turn right
-            .moveBy(0, -320, 40)	// move up
-            .loop();                 // loop it
-            
-        if (map.hitTest(bear.x, bear.y) === true) {
-            alert(bear.x + " und " + bear.y);
-        }
-    };
-
-    game.start(); // start your game!
+ 	$.getJSON("@routes.Application.map()", function( data ) {
+	    enchant(); // initialize
+	    var game = new Core(1280, 720); // game stage
+	    game.preload('/assets/images/@(player).png'); // preload image
+	    game.preload('/assets/images/map0.png'); // preload image
+	    game.fps = 20;
+	    game.onload = function(){
+		
+		// Obstacle Detection on Maps
+		var map = new Map(32, 32);
+		map.image = game.assets['/assets/images/map0.png'];
+		map.loadData(data.fieldMap);
+		map.collisionData = data.colMap;
+		 
+		if (map.hitTest(100,100) === true) {
+		  console.log('hit');
+		}
+		 
+		game.rootScene.addChild(map);
+		var bear = new Sprite(32, 32);
+		bear.image = game.assets['/assets/images/@(player).png'];
+		game.rootScene.addChild(bear);
+		bear.frame = [6, 6, 7, 7];   // select sprite frame
+	
+		bear.tl.moveBy(320, 0, 40)   // move right
+			.scaleTo(-1, 1, 1)		// turn left
+			.moveBy(0, 320, 40)		// move down
+		    .moveBy(-320, 0, 40)     // move left
+		    .scaleTo(1, 1, 1)		// turn right
+		    .moveBy(0, -320, 40)	// move up
+		    .loop();                 // loop it
+	    
+			if (map.hitTest(bear.x, bear.y) === true) {
+			    alert(bear.x + " und " + bear.y);
+			}
+		};
+	
+		game.start(); // start your game!
+    });
         </script>
 }

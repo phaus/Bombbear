@@ -11,7 +11,8 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaEbean,
+    "org.apache.commons" % "commons-io" % "1.3.2"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
