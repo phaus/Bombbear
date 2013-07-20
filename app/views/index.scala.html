@@ -12,7 +12,7 @@
 var map = new Map(32, 32);
 map.image = game.assets['/assets/images/map0.png'];
 var mapa = [
-  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 ,0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
   [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
@@ -61,11 +61,17 @@ game.rootScene.addChild(map);
         game.rootScene.addChild(bear);
         bear.frame = [6, 6, 7, 7];   // select sprite frame
         
-        bear.tl.moveBy(200, 0, 90)   // move right
-            .scaleTo(-1, 1, 1)      // turn left
-            .moveBy(-200, 0, 90)     // move left
-            .scaleTo(1, 1, 1)       // turn right
+        bear.tl.moveBy(320, 0, 40)   // move right
+        	.scaleTo(-1, 1, 1)		// turn left
+        	.moveBy(0, 320, 40)		// move down
+            .moveBy(-320, 0, 40)     // move left
+            .scaleTo(1, 1, 1)		// turn right
+            .moveBy(0, -320, 40)	// move up
             .loop();                 // loop it
+            
+        if (map.hitTest(bear.x, bear.y) === true) {
+            alert(bear.x + " und " + bear.y);
+        }
     };
 
     game.start(); // start your game!
