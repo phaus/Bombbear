@@ -3,49 +3,49 @@
 @main("Welcome to Bombbear!") {
 
 
-	<div id="player-list"></div>
-	<div id="info"></div>
+	<div class="opacity" id="player-list"></div>
+	<div class="opacity" id="info"></div>
 	<script type="text/javascript">
     var WS = window['MozWebSocket'] ? MozWebSocket : WebSocket
  	var chatSocket = new WS("@routes.Application.join().webSocketURL(request)")
     $(function() {
 	    var receiveEvent = function(event) {
-	        var data = JSON.parse(event.data)
-	
-	        // Handle errors
-	        if(data.error) {
-	            chatSocket.close()
-	            $("#onError span").text(data.error)
-	            $("#onError").show()
-	            return
-	        } else {
-	            $("#onChat").show()
-	        }
-	
-	        // Create the message element
-	        var el = $('<div class="message"><span></span><p></p></div>')
-	        $("span", el).text(data.user)
-	        $("p", el).text(data.message)
-	        $(el).addClass(data.kind)
-	        if(data.user == '@player') $(el).addClass('me')
-	        $('#info').append(el)
-	
-	        // Update the members list
-	        $("#info").html('')
-	        $(data.members).each(function() {
-	            var li = document.createElement('li');
-	            li.textContent = this;
-	            $("#info").append(li);
-	        })
-	    }
-	    chatSocket.onmessage = receiveEvent
-		$.getJSON("@routes.Application.player()", function( data ) {
+		    var data = JSON.parse(event.data)
+		
+		    // Handle errors
+		    if(data.error) {
+		        chatSocket.close()
+		        $("#onError span").text(data.error)
+		        $("#onError").show()
+		        return
+		    } else {
+		        $("#onChat").show()
+		    }
+		
+		    // Create the message element
+		    var el = $('<div class="message"><span></span><p></p></div>')
+		    $("span", el).text(data.user)
+		    $("p", el).text(data.message)
+		    $(el).addClass(data.kind)
+		    if(data.user == '@player') $(el).addClass('me')
+		    $('#info').append(el)
+		
+		    // Update the members list
+		    $("#info").html('')
+		    $(data.members).each(function() {
+		        var li = document.createElement('li');
+		        li.textContent = "Character "+this+" joined";
+		        $("#info").append(li);
+		    })
+		}
+		chatSocket.onmessage = receiveEvent
+		
+	$.getJSON("@routes.Application.players()", function( data ) {
 		var content = "";
 		var list = $("#player-list");
-		list.attr('style', 'position:absolute; right: 10px;');
-		content = "<table><td>Spielername:</td><td>Charakter</td>";
-		$.each(data, function(key, value) {
-			content = content + "<tr><td>" + value.username + "</td><td>" + value.character + "</td></tr>";
+		content = "<table><td></td><td>Spielername</td>";
+		$.each(data.players, function(key, value) {
+			content = content + "<tr><td><div style=\"background-image:url('/assets/images/" + value.character + ".png')\" class=\"avatar\"></div></td><td>" + value.username + "</td></tr>";
 		});
 		content = content + "</table>";
 		list.html(content);
@@ -58,10 +58,6 @@
 	    game.preload('/assets/images/@(player).png'); // preload image
 	    game.preload('/assets/images/map1.png'); // preload image
 	    game.fps = 20;
-	    
-	    
-
-	
 
 	    game.onload = function(){
 		

@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 
-import models.Game;
 import models.Client;
+import models.Game;
 import models.GameWorld;
 import models.MapModel;
 
@@ -14,9 +14,10 @@ import org.apache.commons.io.IOUtils;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
-import play.api.libs.ws.WS;
 import play.libs.Json;
-import play.mvc.*;
+import play.mvc.Controller;
+import play.mvc.Result;
+import play.mvc.WebSocket;
 import views.html.index;
 
 public class Application extends Controller {
@@ -28,7 +29,7 @@ public class Application extends Controller {
 		String player = game.getNextPlayerFor("" + System.currentTimeMillis(),
 				request().remoteAddress());
 		if (player == null) {
-			return notFound();
+			return status(503, "All current Game Slots are used!");
 		}
 		return ok(index.render("Your new application is ready.", player));
 	}
@@ -55,14 +56,15 @@ public class Application extends Controller {
 	}
 
 	public static WebSocket<JsonNode> join() {
+		
 		return new WebSocket<JsonNode>() {
-
+			private String ip = request().remoteAddress();
 			// Called when the Websocket Handshake is done.
 			public void onReady(WebSocket.In<JsonNode> in, WebSocket.Out<JsonNode> out) {
-				//Client user = game.getPlayer();
+				Client user = game.getPlayer(ip);
 				// Join the chat room.
 				try {
-					GameWorld.join("user.username", in, out);
+					GameWorld.join(user.character, in, out);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
