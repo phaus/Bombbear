@@ -1,18 +1,21 @@
-$.getScript("/assets/javascripts/bombbear/config.js");
-$.getScript("/assets/javascripts/bombbear/map.js");
-$.getScript("/assets/javascripts/bombbear/player.js");
 
-var game = new Core(800, 600); // game stage
+
+
+ 
 
 $(document).ready(function() {
+	//$.getScript("/assets/javascripts/bombbear/config.js");
+	//$.getScript("/assets/javascripts/bombbear/gamemap.js");
+	//$.getScript("/assets/javascripts/bombbear/player.js");
 	
-	enchant(); // initialize
-    
-    game.preload('/assets/images/chara1.png'); // preload image
-    game.preload('/assets/images/map0.png'); // preload image
-    game.fps = 20;
-    
-    
+	
+
+
+	
+	game.start();
+	  
+	  
+    /*
     game.rootScene.on('downbuttondown', function(evt){
     	move_direction=('down');
     	move();
@@ -121,7 +124,7 @@ $(document).ready(function() {
     
     
     
-    game.start(); // start your game!
+    
     var bear = new Sprite(32, 32);  
     
     var player = new Player();
@@ -129,35 +132,15 @@ $(document).ready(function() {
    // game.rootScene.on('touchmove', function(evt){
     //    player.y = evt.localY;    // set position to touch-y position
    // });
-    function buttonclick(){
-    	console.log("ububbu");
-    	var map = new Map(32, 32);
-    	map.image = game.assets['/assets/images/map0.png'];
-    	  var map2 = [
-    	  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-    	  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
-    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-    	  [  0,  2,  2,  1,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-    	  [  0,  2,  2,  1,  2,  2,  2,  2,  1,  1,  2,  2,  2,  2,  2,  0],
-    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-    	  [  0,  2,  2,  1,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-    	  [  0,  2,  2,  2,  2,  2,  1,  2,  2,  2,  1,  2,  2,  2,  0,  0],
-    	  [  0,  2,  2,  1,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-    	  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-    	  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-    	  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]
-    	];
-    	map.loadData(map2);
-    	 var scene = new Scene();
-    	  scene.addChild(map);
-    	  
-    	   game.currentScene.removeChild(map);
-    	  game.currentScene.addChild(map);
-    	  game.currentScene.addChild(bear);
-    	//game.currentScene.addChild(c);
-    	}
+    */
+	//$("button#testclick").html("Blubb").click(function(){
+		//enchant();
+		
+		
+		   
+		  
+		  //game.currentScene.addChild(bear);
+		   // start your game!
+		//game.currentScene.addChild(c);
+	//	});
 });
