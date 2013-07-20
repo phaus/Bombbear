@@ -16,17 +16,17 @@ map.image = game.assets['/assets/images/map0.png'];
 var mapa = [
   [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
-  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
-  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+  [  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
+  [  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  0,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  0,  0,  0,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  2,  2,  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  0,  0],
+  [  0,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]
@@ -36,17 +36,17 @@ map.loadData(mapa);
 var colMap = [
   [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0],
-  [  0,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  0,  0],
-  [  0,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+  [  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
+  [  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  0,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  0,  0,  0,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  0,  2,  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+  [  0,  2,  2,  2,  0,  2,  0,  2,  2,  2,  2,  2,  2,  2,  0,  0],
+  [  0,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
   [  0,  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]
@@ -56,16 +56,9 @@ map.collisionData = colMap;
 if (map.hitTest(100,100) === true) {
   console.log('hit');
 }
-var Player = enchant.Class.create(enchant.Sprite, {
-    initialize: function(){
-        enchant.Sprite.call(this, size, size);
-        this.image = game.assets['/assets/images/chara1.png'];
-        this.frame = [6, 6, 7, 7];                   // set image data
-        game.rootScene.addChild(this);     // add to canvas
-    }
-});
 
-var move_direction = null;
+
+
  
 game.rootScene.addChild(map);
         
@@ -87,7 +80,7 @@ game.rootScene.addChild(map);
     game.rootScene.on('downbuttonup', function(evt){
     	move_direction='stop';
     	move();
-    	move_finish('down');
+    	//move_finish('down');
     });
     game.rootScene.on('upbuttondown', function(evt){
     	
@@ -97,7 +90,7 @@ game.rootScene.addChild(map);
     game.rootScene.on('upbuttonup', function(evt){
     	move_direction='stop';
     	move();
-    	move_finish('up');
+    	//move_finish('up');
     });
     
     
@@ -108,7 +101,7 @@ game.rootScene.addChild(map);
     game.rootScene.on('leftbuttonup', function(evt){
     	move_direction='stop';
     	move(size);
-    	move_finish('left');
+    	//move_finish('left');
     });
     game.rootScene.on('rightbuttondown', function(evt){
     	
@@ -119,7 +112,7 @@ game.rootScene.addChild(map);
     game.rootScene.on('rightbuttonup', function(evt){
     	move_direction='stop';
     	move(size);
-    	move_finish('right');
+    	//move_finish('right');
     });
     
     function move(movement){
@@ -127,30 +120,35 @@ game.rootScene.addChild(map);
     	bear.tl.resume();
     	switch (move_direction){
     		case 'up':{
-    			if (bear.y % size == 0)  movement = size ; else movement = size - bear.y % size;
-    			if (map.hitTest(bear.x,bear.y-size) !== true ) bear.tl.moveBy(0,- size,4) ;
+    			//if (bear.y % size == 0)  movement = size ; else movement = size - bear.y % size;
+    			//if (map.hitTest(bear.x,bear.y-size) !== true ) bear.tl.moveBy(0,- size,4) ;
+    			if (map.hitTest(bear.x,bear.y-size) !== true ) bear.tl.moveY(- size,4) ;
     			break;
     		}
     		case 'down':{
-    			if (bear.y % size == 0)  movement = size ; else movement = size - bear.y % size;
-    			if (map.hitTest(bear.x,bear.y+size) !== true ) bear.tl.moveBy(0,size,4) ;
+    			//if (bear.y % size == 0)  movement = size ; else movement = size - bear.y % size;
+    			//if (map.hitTest(bear.x,bear.y+size) !== true ) bear.tl.moveBy(0,size,4) ;
+    			if (map.hitTest(bear.x,bear.y+size) !== true ) bear.tl.moveY(size,4) ;
     			break;
     		}
     		case 'left':{
-    			if (bear.x % size == 0)  movement = size ; else movement = size - bear.x % size;
-    			if (map.hitTest(bear.x-size,bear.y) !== true ) bear.tl.scaleTo(-1, 1, 1).moveBy(-size,0,4) ;
+    			//if (bear.x % size == 0)  movement = size ; else movement = size - bear.x % size;
+    			//if (map.hitTest(bear.x-size,bear.y) !== true ) bear.tl.scaleTo(-1, 1, 1).moveBy(-size,0,4) ;
+    			if (map.hitTest(bear.offsetX-size,bear.y) !== true ) bear.tl.scaleTo(-1, 1, 1).moveX(-size+bear.offsetX,5) ;
     			break;
     		}
     		case 'right':{
-    			if (bear.x % size == 0)  movement = size ; else movement = size - bear.x % size;
-    			if (map.hitTest(bear.x+size,bear.y) !== true ) bear.tl.scaleTo(1, 1, 1).moveBy(size,0,4) ;
+    			//if (bear.x % size == 0)  movement = size ; else movement = size - bear.x % size;
+    			//if (map.hitTest(bear.x+size,bear.y) !== true ) bear.tl.scaleTo(1, 1, 1).moveBy(size,0,4) ;
+    			if (map.hitTest(bear.offsetX+size,bear.y) !== true ) bear.tl.scaleTo(1, 1, 1).moveX(size+bear.offsetX,5) ;
     			break;
     		}
     		case 'stop':{
-    			bear.tl.clear();
+    			//bear.tl.clear();
     			break;
     		}
     	}
+    	console.log(bear);
     }
     
     function move_finish(direction){
