@@ -3,7 +3,7 @@
 @main("Welcome to Bombbear!") {
 	<script type="text/javascript">
     enchant(); // initialize
-    var game = new Core(1280, 720); // game stage
+    var game = new Core(800, 600); // game stage
     game.preload('/assets/images/chara1.png'); // preload image
     game.preload('/assets/images/map0.png'); // preload image
     game.fps = 20;
@@ -54,20 +54,87 @@ map.collisionData = colMap;
 if (map.hitTest(100,100) === true) {
   console.log('hit');
 }
+var Player = enchant.Class.create(enchant.Sprite, {
+    initialize: function(){
+        enchant.Sprite.call(this, 32, 32);
+        this.image = game.assets['/assets/images/chara1.png'];
+        this.frame = [6, 6, 7, 7];                   // set image data
+        game.rootScene.addChild(this);     // add to canvas
+    }
+});
  
 game.rootScene.addChild(map);
-        var bear = new Sprite(32, 32);
+        
         bear.image = game.assets['/assets/images/chara1.png'];
         game.rootScene.addChild(bear);
         bear.frame = [6, 6, 7, 7];   // select sprite frame
-        
+        /*
         bear.tl.moveBy(200, 0, 90)   // move right
             .scaleTo(-1, 1, 1)      // turn left
             .moveBy(-200, 0, 90)     // move left
-            .scaleTo(1, 1, 1)       // turn right
-            .loop();                 // loop it
+            .scaleTo(1, 1, 1)  ;     // turn right
+          */  //.loop();                 // loop it
     };
-
+    game.rootScene.on('downbuttondown', function(evt){
+    	//bear.y = evt.localY;    // set position to touch-y position
+    	bear.tl.moveBy(0,32,8);
+        
+    });
+    game.rootScene.on('upbuttondown', function(evt){
+    	//bear.y = evt.localY;    // set position to touch-y position
+    	bear.tl.moveBy(0,-32,8);
+        
+    });
+    game.rootScene.on('leftbuttondown', function(evt){
+    	//bear.y = evt.localY;    // set position to touch-y position
+    	bear.tl.moveBy(-32,0,8);
+        
+    });
+    game.rootScene.on('rightbuttondown', function(evt){
+    	//bear.y = evt.localY;    // set position to touch-y position
+    	bear.tl.moveBy(32,0,8);
+        
+    });
     game.start(); // start your game!
+    var bear = new Sprite(32, 32);  
+    
+    var player = new Player();
+    
+   // game.rootScene.on('touchmove', function(evt){
+    //    player.y = evt.localY;    // set position to touch-y position
+   // });
+    function buttonclick(){
+    	console.log("ububbu");
+    	var map = new Map(32, 32);
+    	map.image = game.assets['/assets/images/map0.png'];
+    	  var map2 = [
+    	  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    	  [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0],
+    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+    	  [  0,  2,  2,  1,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+    	  [  0,  2,  2,  1,  2,  2,  2,  2,  1,  1,  2,  2,  2,  2,  2,  0],
+    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+    	  [  0,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+    	  [  0,  2,  2,  1,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  0],
+    	  [  0,  2,  2,  2,  2,  2,  1,  2,  2,  2,  1,  2,  2,  2,  0,  0],
+    	  [  0,  2,  2,  1,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    	  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    	  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    	  [  0,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]
+    	];
+    	map.loadData(map2);
+    	 var scene = new Scene();
+    	  scene.addChild(map);
+    	  
+    	   game.currentScene.removeChild(map);
+    	  game.currentScene.addChild(map);
+    	  game.currentScene.addChild(bear);
+    	//game.currentScene.addChild(c);
+    	}
         </script>
 }
+
+
