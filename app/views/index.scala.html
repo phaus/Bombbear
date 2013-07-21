@@ -2,29 +2,63 @@
 
 @main("Welcome to Bombbear!") {
 
-	<div id="player-list"></div>
-	
+
+	<div class="opacity" id="player-list"></div>
+	<div class="opacity" id="info"></div>
 	<script type="text/javascript">
-		enchant(); // initialize
-	    var game = new Core(1280, 720); // game stage
-	    game.preload('/assets/images/@(player).png'); // preload image
-	    game.preload('/assets/images/map1.png'); // preload image
-	    game.fps = 20;
-	$.getJSON("@routes.Application.player()", function( data ) {
+    var WS = window['MozWebSocket'] ? MozWebSocket : WebSocket
+ 	var chatSocket = new WS("@routes.Application.join().webSocketURL(request)")
+    $(function() {
+	    var receiveEvent = function(event) {
+		    var data = JSON.parse(event.data)
+		
+		    // Handle errors
+		    if(data.error) {
+		        chatSocket.close()
+		        $("#onError span").text(data.error)
+		        $("#onError").show()
+		        return
+		    } else {
+		        $("#onChat").show()
+		    }
+		
+		    // Create the message element
+		    var el = $('<div class="message"><span></span><p></p></div>')
+		    $("span", el).text(data.user)
+		    $("p", el).text(data.message)
+		    $(el).addClass(data.kind)
+		    if(data.user == '@player') $(el).addClass('me')
+		    $('#info').append(el)
+		
+		    // Update the members list
+		    $("#info").html('')
+		    $(data.members).each(function() {
+		        var li = document.createElement('li');
+		        li.textContent = "Character "+this+" joined";
+		        $("#info").append(li);
+		    })
+		}
+		chatSocket.onmessage = receiveEvent
+		
+	$.getJSON("@routes.Application.players()", function( data ) {
 		var content = "";
 		var list = $("#player-list");
-		list.attr('style', 'position:absolute; right: 10px;');
-		content = "<table><td>Spielername:</td><td>Charakter</td>";
-		$.each(data, function(key, value) {
-			content = content + "<tr><td>" + value.username + "</td><td>" + value.character + "</td></tr>";
+		content = "<table><td></td><td>Spielername</td>";
+		$.each(data.players, function(key, value) {
+			content = content + "<tr><td><div style=\"background-image:url('/assets/images/" + value.character + ".png')\" class=\"avatar\"></div></td><td>" + value.username + "</td></tr>";
 		});
 		content = content + "</table>";
 		list.html(content);
 	});
 	
-	
-	
+
  	$.getJSON("@routes.Application.map()", function( data ) {
+	    enchant(); // initialize
+	    var game = new Core(1280, 720); // game stage
+	    game.preload('/assets/images/@(player).png'); // preload image
+	    game.preload('/assets/images/map1.png'); // preload image
+	    game.fps = 20;
+
 	    game.onload = function(){
 		
 		// Obstacle Detection on Maps
@@ -32,11 +66,7 @@
 		map.image = game.assets['/assets/images/map1.png'];
 		map.loadData(data.fieldMap);
 		map.collisionData = data.colMap;
-		 
-		if (map.hitTest(100,100) === true) {
-		  console.log('hit');
-		}
-		 
+ 
 		game.rootScene.addChild(map);
 		var bear = new Sprite(32, 32);
 		bear.image = game.assets['/assets/images/@(player).png'];
@@ -57,6 +87,11 @@
 		};
 	
 		game.start(); // start your game!
+		
+	        chatSocket.send(JSON.stringify(
+	            {text:"@player joined!"}
+	        ))		
     });
-        </script>
+    	});	
+	</script>
 }

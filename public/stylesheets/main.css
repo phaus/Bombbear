@@ -1,0 +1,33 @@
+#info {
+	z-index:999; 
+	position:absolute; 
+	bottom: 10px;
+	height:40px; 
+	width: 99%;
+	background-color:black;
+	color:white;
+	overflow:auto;
+}
+
+#player-list {
+	background-color:black;
+	color:white;
+	overflow:auto;
+	position:absolute; 
+	right: 10px;
+	height: 55%;
+}
+
+.avatar {
+	position: relative;
+	top: -5px;
+	height: 32px;
+	width: 32px;
+}
+
+.opacity {   
+    opacity: 0.5;       /* modern browser */  
+    -moz-opacity: 0.5;  /* older Mozilla browser */  
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE8 in Standard Compliant Mode */  
+    filter:alpha(opacity=50); /* IE5.x -7.0 */  
+} 
