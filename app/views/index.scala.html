@@ -113,9 +113,12 @@
 		        
 	            initializeChara(sprites);
 		        var message = JSON.stringify({
-		                character: "@player",
-		                x: bear.x,
-		                y: bear.y
+                        type: "update",
+                        player: {
+                            avatar: "@player",
+		                    x: bear.x,
+		                    y: bear.y
+                        }
 		            });
 		            chatSocket.send(message);
 		            console.log(message);
