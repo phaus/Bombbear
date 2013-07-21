@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 
-import models.Client;
 import models.Game;
 import models.GameWorld;
 import models.MapModel;
@@ -44,7 +43,7 @@ public class Application extends Controller {
 	public static Result player() {
 		ObjectNode result = Json.newObject();
 		result.put("player",
-				Json.toJson(game.getPlayer(request().remoteAddress())));
+				Json.toJson(game.getPlayerName(request().remoteAddress())));
 		return ok(result);
 
 	}
@@ -60,10 +59,10 @@ public class Application extends Controller {
 			private String ip = request().remoteAddress();
 			// Called when the Websocket Handshake is done.
 			public void onReady(WebSocket.In<JsonNode> in, WebSocket.Out<JsonNode> out) {
-				Client user = game.getPlayer(ip);
+				String username = game.getPlayerName(ip);
 				// Join the chat room.
 				try {
-					GameWorld.join(user.character, in, out);
+					GameWorld.join(username, in, out);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
