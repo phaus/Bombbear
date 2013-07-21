@@ -10,17 +10,15 @@
 	    game.preload('/assets/images/@(player).png'); // preload image
 	    game.preload('/assets/images/map1.png'); // preload image
 	    game.fps = 20;
-	$.getJSON("@routes.Application.players()", function( data ) {
+	$.getJSON("@routes.Application.player()", function( data ) {
 		var content = "";
 		var list = $("#player-list");
-		list.attr('style', 'position:absolute; right: 10px; border: solid 1px;');
-		content = "<table>";
-		content += "<thead><tr><td>Spieler-ID:</td><td>Charakter-File:</td></tr></thead>";
-		content += "<tbody>";
-		$.each(data.players, function(key, value) {
-			content += "<tr><td>" + value.username + "</td><td>" + value.character + "</td></tr>";
+		list.attr('style', 'position:absolute; right: 10px;');
+		content = "<table><td>Spielername:</td><td>Charakter</td>";
+		$.each(data, function(key, value) {
+			content = content + "<tr><td>" + value.username + "</td><td>" + value.character + "</td></tr>";
 		});
-		content += "</tbody></table>";
+		content = content + "</table>";
 		list.html(content);
 	});
 	
