@@ -65,7 +65,7 @@
 		        	$.getJSON("@routes.Application.players()", function (data) {
 		        		$(data.players).each(function (key, value) {
 		        		console.log("key: "+key+" value: "+ JSON.stringify(value));
-		        		/*
+		 
 			        		var chara = sprites[value.character];
 			        		var posX = value.start.x;
 			        		var posY = value.start.y;
@@ -78,7 +78,7 @@
 				            .scaleTo(1, 1, 1) // turn right
 				            .moveBy(0, -320, 40) // move up
 				            .loop(); // loop it
-				            */
+				            
 		        		});
 		        	});
 		        }
@@ -92,7 +92,6 @@
 		            game.rootScene.addChild(sprites['chara' + i]);
 		            sprites['chara' + i].frame = [6, 6, 7, 7]; // select sprite frame
 		        }
-	            var bear = sprites['@(player)'];
 	            
 	            // Obstacle Detection on Maps
 	            var map = new Map(16, 16);
@@ -102,9 +101,10 @@
 	
 	            game.rootScene.addChild(map);
 	
+				/*
 	            if (map.hitTest(bear.x, bear.y) === true) {
 	                alert(bear.x + " und " + bear.y);
-	            }
+	            }*/
 	
 	            chatSocket.send(JSON.stringify({
 	                text: "@player joined!"
@@ -112,6 +112,7 @@
 		        var update = function () {
 		        
 	            initializeChara(sprites);
+		        var bear = sprites['@(player)'];
 		        var message = JSON.stringify({
                         type: "update",
                         player: {
