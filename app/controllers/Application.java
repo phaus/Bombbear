@@ -56,7 +56,6 @@ public class Application extends Controller {
 	}
 
 	public static WebSocket<JsonNode> join() {
-		
 		return new WebSocket<JsonNode>() {
 			private String ip = request().remoteAddress();
 			// Called when the Websocket Handshake is done.
