@@ -39,7 +39,7 @@ public class Game {
 			Logger.info("Player " + username + " uses Char " + player);
 			charCounter++;
 			players.add(new Client(player, username, POSITIONS.get(player)));
-			playerMapping.put(ip, username);
+			playerMapping.put(ip, player);
 			return player;
 		}
 		return null;
