@@ -1,40 +1,31 @@
 package models;
 
-import static akka.pattern.Patterns.ask;
-import static java.util.concurrent.TimeUnit.SECONDS;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import akka.actor.ActorRef;
+import akka.actor.Props;
+import akka.actor.UntypedActor;
 import callbacks.WebsocketClose;
 import callbacks.WebsocketIn;
-import handler.MessageHandler;
-import models.messages.Message;
 import models.messages.Update;
-import models.messages.WorldUpdate;
-
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
-
 import play.Logger;
 import play.libs.Akka;
-import play.libs.F.Callback;
-import play.libs.F.Callback0;
 import play.libs.Json;
 import play.mvc.WebSocket;
 import scala.concurrent.Await;
 import scala.concurrent.duration.Duration;
-import akka.actor.ActorRef;
-import akka.actor.Props;
-import akka.actor.UntypedActor;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static akka.pattern.Patterns.ask;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class GameWorld extends UntypedActor {
 
     // Default room.
     public static ActorRef defaultRoom = Akka.system().actorOf(new Props(GameWorld.class));
-
-    // Create a Robot, just for fun.
 
     /**
      * Join the default room.
@@ -50,9 +41,6 @@ public class GameWorld extends UntypedActor {
 
             // For each event received on the socket,
             in.onMessage(new WebsocketIn());
-
-
-
 
             // When the socket is closed.
             in.onClose(new WebsocketClose(username));
