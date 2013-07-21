@@ -10,6 +10,7 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 
+import play.Logger;
 import play.libs.Akka;
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
@@ -39,16 +40,23 @@ public class GameWorld extends UntypedActor {
 		String result = (String) Await.result(
 				ask(defaultRoom, new Join(username, out), 1000),
 				Duration.create(1, SECONDS));
-
 		if ("OK".equals(result)) {
 
 			// For each event received on the socket,
 			in.onMessage(new Callback<JsonNode>() {
 				public void invoke(JsonNode event) {
-
-					// Send a Talk message to the room.
-					defaultRoom.tell(new Talk(username, event.get("text")
-							.asText()), null);
+					if(event.get("text") != null){
+						// Send a Talk message to the room.
+						defaultRoom.tell(new Talk(username, event.get("text")
+								.asText()), null);
+						
+					} else {
+						defaultRoom.tell(
+								new Update(
+										event.get("character").asText(), 
+										event.get("x").asInt(), 
+										event.get("y").asInt()), null);	
+					}
 
 				}
 			});
@@ -80,9 +88,8 @@ public class GameWorld extends UntypedActor {
 	Map<String, WebSocket.Out<JsonNode>> members = new HashMap<String, WebSocket.Out<JsonNode>>();
 
 	public void onReceive(Object message) throws Exception {
-
 		if (message instanceof Join) {
-
+			
 			// Received a Join message
 			Join join = (Join) message;
 
@@ -102,6 +109,9 @@ public class GameWorld extends UntypedActor {
 
 			notifyAll("talk", talk.username, talk.text);
 
+		} else if (message instanceof Update) {
+			Update update = (Update) message;
+			notifyAllUpdates("update", update.character, update);
 		} else if (message instanceof Quit) {
 
 			// Received a Quit message
@@ -117,6 +127,22 @@ public class GameWorld extends UntypedActor {
 
 	}
 
+	public void notifyAllUpdates(String kind, String user, Update update) {
+		Logger.info("\n");
+		for (WebSocket.Out<JsonNode> channel : members.values()) {
+			ObjectNode event = Json.newObject();
+			event.put("kind", kind);
+			event.put("user", user);
+			event.put("update", Json.toJson(update));
+			ArrayNode m = event.putArray("members");
+			for (String u : members.keySet()) {
+				m.add(u);
+			}
+			Logger.info("sending:" + event.toString());
+			channel.write(event);
+		}
+	}
+
 	// Send a Json event to all members
 	public void notifyAll(String kind, String user, String text) {
 		for (WebSocket.Out<JsonNode> channel : members.values()) {
@@ -130,7 +156,7 @@ public class GameWorld extends UntypedActor {
 			for (String u : members.keySet()) {
 				m.add(u);
 			}
-
+			Logger.info("sending:" + event.toString());
 			channel.write(event);
 		}
 	}
