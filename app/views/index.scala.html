@@ -9,10 +9,11 @@
 	$(function () {
 	    var receiveEvent = function (event) {
 	        var data = JSON.parse(event.data)
+	        /*
 	        JSON.parse(event.data, function (key, value) {
 	        	console.log("event data: "+key+": "+value );
 	        });
-			
+			*/
 	        // Handle errors
 	        if (data.error) {
 	            chatSocket.close()
@@ -47,25 +48,51 @@
             $("#player-list").append("<tr><td><div style=\"background-image:url('/assets/images/" + this + ".png')\" class=\"avatar\"></div></td><td>" + this + "</td></tr>");
         };
         
-        function positionChara (chara) {
-        	$.getJSON("@routes.Application.player()", function (data) {
-        		var posX = data.player.start.x;
-        		var posY = data.player.start.y;
-        		chara.tl.moveTo(posX, posY, 0);
-        	});
-        }
+        
 	
 	    $.getJSON("@routes.Application.map()", function (data) {
 	        enchant(); // initialize
 	        var game = new Core(1280, 720); // game stage
 	        for(var i = 0; i < 8; i++){
-	        	game.preload('/assets/images/chara'+i+'.png'); // preload image
-	        }
+		       	game.preload('/assets/images/chara'+i+'.png'); // preload image
+	        };
 	        game.preload('/assets/images/map1.png'); // preload image
 	        game.fps = 20;
 	
 	        game.onload = function () {
-	            var bear = new Sprite(32, 32);
+	        
+	        	function initializeChara (sprites) {
+		        	$.getJSON("@routes.Application.players()", function (data) {
+		        		$(data.players).each(function (key, value) {
+		        		console.log("key: "+key+" value: "+ JSON.stringify(value));
+		        		/*
+			        		var chara = sprites[value.character];
+			        		var posX = value.start.x;
+			        		var posY = value.start.y;
+			        		chara.tl.moveTo(posX, posY, 0);
+			        		
+			        		chara.tl.moveBy(320, 0, 40) // move right
+				            .scaleTo(-1, 1, 1) // turn left
+				            .moveBy(0, 320, 40) // move down
+				            .moveBy(-320, 0, 40) // move left
+				            .scaleTo(1, 1, 1) // turn right
+				            .moveBy(0, -320, 40) // move up
+				            .loop(); // loop it
+				            */
+		        		});
+		        	});
+		        }
+	        
+		        var sprites = [];
+		        for(var i = 0; i < 8; i++){
+		        	sprites['chara' + i] = new Sprite(32, 32);
+		        	
+		            sprites['chara' + i].image = game.assets['/assets/images/chara' + i +'.png'];
+		            
+		            game.rootScene.addChild(sprites['chara' + i]);
+		            sprites['chara' + i].frame = [6, 6, 7, 7]; // select sprite frame
+		        }
+	            var bear = sprites['@(player)'];
 	            
 	            // Obstacle Detection on Maps
 	            var map = new Map(16, 16);
@@ -74,20 +101,6 @@
 	            map.collisionData = data.colMap;
 	
 	            game.rootScene.addChild(map);
-	            bear.image = game.assets['/assets/images/@(player).png'];
-	            // position Character
-	            positionChara(bear);
-	            
-	            game.rootScene.addChild(bear);
-	            bear.frame = [6, 6, 7, 7]; // select sprite frame
-	
-	            bear.tl.moveBy(320, 0, 40) // move right
-	            .scaleTo(-1, 1, 1) // turn left
-	            .moveBy(0, 320, 40) // move down
-	            .moveBy(-320, 0, 40) // move left
-	            .scaleTo(1, 1, 1) // turn right
-	            .moveBy(0, -320, 40) // move up
-	            .loop(); // loop it
 	
 	            if (map.hitTest(bear.x, bear.y) === true) {
 	                alert(bear.x + " und " + bear.y);
@@ -97,6 +110,8 @@
 	                text: "@player joined!"
 	            }))
 		        var update = function () {
+		        
+	            initializeChara(sprites);
 		        var message = JSON.stringify({
 		                character: "@player",
 		                x: bear.x,
