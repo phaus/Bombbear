@@ -1,6 +1,8 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import play.Logger;
@@ -20,7 +22,8 @@ public class Game {
 		POSITIONS.put( "chara6", new Integer [] {48,48});
 		POSITIONS.put( "chara7", new Integer [] {0,0});
 	}
-	private Map<String, Client> players = new HashMap<String, Client>();
+	private Map<String, String> playerMapping =  new HashMap<String,String>();
+	private List<Client> players = new ArrayList<Client>();
 	private int charCounter = 0;
 
 	public Game() {
@@ -28,24 +31,25 @@ public class Game {
 	}
 
 	public String getNextPlayerFor(String username, String ip) {
-		if(players.containsKey(ip)){
-			return players.get(ip).character;
+		if(playerMapping.containsKey(ip)){
+			return playerMapping.get(ip);
 		}
-		if (!players.containsKey(username) && charCounter < CHARS.length) {
+		if (!playerMapping.containsKey(username) && charCounter < CHARS.length) {
 			String player = CHARS[charCounter];
 			Logger.info("Player " + username + " uses Char " + player);
 			charCounter++;
-			players.put(ip, new Client(player, username, POSITIONS.get(player)));
+			players.add(new Client(player, username, POSITIONS.get(player)));
+			playerMapping.put(ip, username);
 			return player;
 		}
 		return null;
 	}
 
-	public Client getPlayer(String ip){
-		return players.get(ip);
+	public String getPlayerName(String ip){
+		return playerMapping.get(ip);
 	}
 	
-	public Map<String, Client> getPlayers() {
+	public List<Client> getPlayers() {
 		return players;
 	}
 }
