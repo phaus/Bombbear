@@ -58,7 +58,9 @@
 	    $.getJSON("@routes.Application.map()", function (data) {
 	        enchant(); // initialize
 	        var game = new Core(1280, 720); // game stage
-	        game.preload('/assets/images/@(player).png'); // preload image
+	        for(var i = 0; i < 8; i++){
+	        	game.preload('/assets/images/chara'+i+'.png'); // preload image
+	        }
 	        game.preload('/assets/images/map1.png'); // preload image
 	        game.fps = 20;
 	
