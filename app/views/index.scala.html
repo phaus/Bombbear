@@ -31,27 +31,21 @@
 	        if (data.user == '@player') $(el).addClass('me')
 	        $('#info').append(el)
 	
+			
 	        // Update the members list
 	        $("#info").html('')
-	        $(data.members).each(function () {
-	            var li = document.createElement('li');
-	            li.textContent = "Character " + this + " joined";
-	            $("#info").append(li);
-	        })
+	        $("#player-list").html('<table><td></td><td>Spielername</td>');
+	        $(data.members).each(updatePlayerList);
+	        $("#player-list").append('</table>');
 	    }
 	    chatSocket.onmessage = receiveEvent
 	
-	    $.getJSON("@routes.Application.players()", function (data) {
-	        var content = "";
-	        var list = $("#player-list");
-	        content = "<table><td></td><td>Spielername</td>";
-	        $.each(data.players, function (key, value) {
-	            content = content + "<tr><td><div style=\"background-image:url('/assets/images/" + value.character + ".png')\" class=\"avatar\"></div></td><td>" + value.username + "</td></tr>";
-	        });
-	        content = content + "</table>";
-	        list.html(content);
-	    });
-	
+	    var updatePlayerList = function () {
+            var li = document.createElement('li');
+            li.textContent = "Character " + this + " joined";
+            $("#info").append(li);
+            $("#player-list").append("<tr><td><div style=\"background-image:url('/assets/images/" + this + ".png')\" class=\"avatar\"></div></td><td>" + this + "</td></tr>");
+        };
 	
 	    $.getJSON("@routes.Application.map()", function (data) {
 	        enchant(); // initialize
