@@ -46,6 +46,14 @@
             $("#info").append(li);
             $("#player-list").append("<tr><td><div style=\"background-image:url('/assets/images/" + this + ".png')\" class=\"avatar\"></div></td><td>" + this + "</td></tr>");
         };
+        
+        function positionChara (chara) {
+        	$.getJSON("@routes.Application.player()", function (data) {
+        		var posX = data.player.start.x;
+        		var posY = data.player.start.y;
+        		chara.tl.moveTo(posX, posY, 0);
+        	)};
+        }
 	
 	    $.getJSON("@routes.Application.map()", function (data) {
 	        enchant(); // initialize
@@ -56,6 +64,7 @@
 	
 	        game.onload = function () {
 	            var bear = new Sprite(32, 32);
+	            
 	            // Obstacle Detection on Maps
 	            var map = new Map(16, 16);
 	            map.image = game.assets['/assets/images/map1.png'];
@@ -64,6 +73,9 @@
 	
 	            game.rootScene.addChild(map);
 	            bear.image = game.assets['/assets/images/@(player).png'];
+	            // position Character
+	            positionChara(bear);
+	            
 	            game.rootScene.addChild(bear);
 	            bear.frame = [6, 6, 7, 7]; // select sprite frame
 	
